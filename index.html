@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tombol Liquid Glass (Link)</title>
+    <style>
+        /* Variabel CSS untuk tema terang/gelap */
+        :root {
+            --bg-body: #f0f2f5;
+            --text-color: #333;
+            --button-bg-light: rgba(255, 255, 255, 0.15);
+            --button-border-light: rgba(255, 255, 255, 0.3);
+            --button-shadow-1: rgba(0, 0, 0, 0.1);
+            --button-shadow-2: rgba(0, 0, 0, 0.05);
+            --button-text: #333;
+            --shine-gradient: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        }
+
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #1a1a2e;
+                --text-color: #e0e0e0;
+                --button-bg-light: rgba(0, 0, 0, 0.2);
+                --button-border-light: rgba(255, 255, 255, 0.1);
+                --button-shadow-1: rgba(0, 0, 0, 0.3);
+                --button-shadow-2: rgba(0, 0, 0, 0.15);
+                --button-text: #e0e0e0;
+                --shine-gradient: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: var(--bg-body);
+            color: var(--text-color);
+            transition: background 0.3s ease, color 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Gaya Tombol Liquid Glass */
+        .liquid-glass-button {
+            /* Flexbox untuk konten tombol */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            /* Ukuran dan font */
+            padding: 1rem 2.5rem; /* Responsif dengan rem */
+            font-size: 1.1rem;   /* Responsif dengan rem */
+            font-weight: 600;            color: var(--button-text);
+            text-decoration: none; /* Hapus underline default link */
+            white-space: nowrap; /* Mencegah teks pecah baris */
+
+            /* Gaya Liquid Glass */
+            background: var(--button-bg-light);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%); /* Dukungan browser lama */
+            border: 1px solid var(--button-border-light);
+            border-radius: 12px;
+            box-shadow: 0 8px 16px var(--button-shadow-1),
+                        0 3px 6px var(--button-shadow-2);
+            
+            /* Interaksi */
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+            position: relative; /* Penting untuk efek kilau */
+            overflow: hidden;   /* Penting untuk efek kilau */
+        }
+
+        .liquid-glass-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px var(--button-shadow-1),
+                        0 5px 10px var(--button-shadow-2);
+            border-color: rgba(255, 255, 255, 0.5); /* Sedikit lebih terang saat hover */        }
+
+        .liquid-glass-button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px var(--button-shadow-1),
+                        0 2px 4px var(--button-shadow-2);
+        }
+
+        /* Efek kilau "Liquid" */
+        .liquid-glass-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: var(--shine-gradient);
+            transform: skewX(-20deg);
+            transition: transform 0.6s ease-out;
+        }
+
+        .liquid-glass-button:hover::before {
+            transform: translateX(200%) skewX(-20deg);
+        }
+
+        /* Responsivitas untuk layar kecil */
+        @media (max-width: 600px) {
+            .liquid-glass-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .liquid-glass-button {
+                padding: 0.7rem 1.5rem;                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a 
+        href="https://maps.app.goo.gl/8AYyfYj1Vj4YfYmh7?g_st=iw" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="liquid-glass-button"
+    >
+        Alamat Site
+    </a>
+    <a 
+        href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQD1dikP15KtTZ2dC53p6nMfAcMNlRpqXvEjAGcwsb5gc0Q?email=div.oti%40idclear.co.id&e=9pwFw0" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="liquid-glass-button"
+    >
+        Data Aset
+    </a>
+</body>
+</html>
