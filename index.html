@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTV 2026 - Grid Layout</title>
+    <title>BTV 2026 - Section Layout</title>
     <style>
         :root {
             --bg-body: #f0f2f5;
@@ -14,6 +14,7 @@
             --button-shadow-2: rgba(0, 0, 0, 0.05);
             --button-text: #333;
             --shine-gradient: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            --section-label: #666;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -26,41 +27,59 @@
                 --button-shadow-2: rgba(0, 0, 0, 0.15);
                 --button-text: #e0e0e0;
                 --shine-gradient: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                --section-label: #aaa;
             }
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
             background: var(--bg-body);
             color: var(--text-color);
-            padding: 20px;
-            box-sizing: border-box;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
         }
 
-        /* Container Grid 3x3 */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 Kolom */
-            gap: 20px; /* Jarak antar tombol */
+        .section {
             width: 100%;
             max-width: 900px;
+            text-align: center;
         }
-        
+
+        .section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--section-label);
+            opacity: 0.7;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .grid-1 { grid-template-columns: 1fr; justify-items: center; }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
         .liquid-glass-button {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.2rem 1rem;
-            font-size: 0.95rem;
+            padding: 1rem;
+            width: 100%;
+            min-height: 60px;
+            box-sizing: border-box;
+            font-size: 0.9rem;
             font-weight: 600;
             color: var(--button-text);
             text-decoration: none;
-            text-align: center;
             background: var(--button-bg-light);
             backdrop-filter: blur(12px) saturate(180%);
             -webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -73,7 +92,7 @@
         }
 
         .liquid-glass-button:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 12px 24px var(--button-shadow-1);
             border-color: rgba(255, 255, 255, 0.5);
         }
@@ -92,30 +111,45 @@
             transform: translateX(200%) skewX(-20deg);
         }
 
-        /* Responsif: Menjadi 1 kolom pada layar HP */
+        /* Responsive */
         @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
+            .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .grid-4, .grid-3 { grid-template-columns: 1fr; }
+            .liquid-glass-button { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="grid-container">
-        <!-- Baris 1 -->
-        <a href="https://maps.app.goo.gl/8AYyfYj1Vj4YfYmh7?g_st=iw" target="_blank" class="liquid-glass-button">Alamat Site</a>
+    <!-- Section 1: 1 Tombol -->
+    <div class="section">
+        <div class="section-title">Lokasi</div>
+        <div class="grid grid-1">
+            <a href="https://maps.app.goo.gl/8AYyfYj1Vj4YfYmh7?g_st=iw" target="_blank" class="liquid-glass-button" style="max-width: 300px;">Alamat Site</a>
+        </div>
+    </div>
 
-        <!-- Baris 2 -->
-        <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQD1dikP15KtTZ2dC53p6nMfAWCBwAL3ipp958OyNljNeVM" target="_blank" class="liquid-glass-button">Data Aset</a>
-        <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQCY1E_3c1cKQLRb3SMKGduMAUFuC6wObp7McUm-OyFlquw" target="_blank" class="liquid-glass-button">Checklist</a>
-        <a href="https://idclear01.sharepoint.com/:u:/s/UnitOIT/IQA5ZJFVG-yYSKV1cdVdN6-DAdckft8p2TDBDPgplOtEv98" target="_blank" class="liquid-glass-button">Rack Mapping</a>
-        <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQDcxUMj93KOQod0TFuCO5bWAYK8KecDjxsUhn8ZedmZLh4" target="_blank" class="liquid-glass-button">Network Port Mapping</a>
+    <!-- Section 2: 4 Tombol -->
+    <div class="section">
+        <div class="section-title">Data & Mapping</div>
+        <div class="grid grid-4">
+            <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQD1dikP15KtTZ2dC53p6nMfAWCBwAL3ipp958OyNljNeVM" target="_blank" class="liquid-glass-button">Data Aset</a>
+            <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQCY1E_3c1cKQLRb3SMKGduMAUFuC6wObp7McUm-OyFlquw" target="_blank" class="liquid-glass-button">Checklist</a>
+            <a href="https://idclear01.sharepoint.com/:u:/s/UnitOIT/IQA5ZJFVG-yYSKV1cdVdN6-DAdckft8p2TDBDPgplOtEv98" target="_blank" class="liquid-glass-button">Rack Mapping</a>
+            <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQDcxUMj93KOQod0TFuCO5bWAYK8KecDjxsUhn8ZedmZLh4" target="_blank" class="liquid-glass-button">Port Mapping</a>
+        </div>
+    </div>
 
-        <!-- Baris 3 -->
-        <a href="#" class="liquid-glass-button">Menu 7</a>
-        <a href="#" class="liquid-glass-button">Menu 8</a>
-        <a href="#" class="liquid-glass-button">Menu 9</a>
+    <!-- Section 3: 3 Tombol -->
+    <div class="section">
+        <div class="section-title">Lain-lain</div>
+        <div class="grid grid-3">
+            <a href="#" class="liquid-glass-button">Internal Doc 1</a>
+            <a href="#" class="liquid-glass-button">Internal Doc 2</a>
+            <a href="#" class="liquid-glass-button">Internal Doc 3</a>
+        </div>
     </div>
 
 </body>
