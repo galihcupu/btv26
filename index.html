@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTV 2026</title>
+    <title>BTV 2026 - Grid Layout</title>
     <style>
         :root {
             --bg-body: #f0f2f5;
@@ -32,55 +32,57 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            flex-direction: column; /* Mengatur arah menjadi vertikal */
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             background: var(--bg-body);
             color: var(--text-color);
-            gap: 15px; /* Memberikan jarak antar tombol */
             padding: 20px;
             box-sizing: border-box;
         }
+
+        /* Container Grid 3x3 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Kolom */
+            gap: 20px; /* Jarak antar tombol */
+            width: 100%;
+            max-width: 900px;
+        }
         
         .liquid-glass-button {
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%; /* Tombol menyesuaikan lebar kontainer */
-            max-width: 300px; /* Batas lebar maksimal tombol */
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
+            padding: 1.2rem 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: var(--button-text);
             text-decoration: none;
-            white-space: nowrap;
+            text-align: center;
             background: var(--button-bg-light);
             backdrop-filter: blur(12px) saturate(180%);
             -webkit-backdrop-filter: blur(12px) saturate(180%);
             border: 1px solid var(--button-border-light);
             border-radius: 12px;
-            box-shadow: 0 8px 16px var(--button-shadow-1), 0 3px 6px var(--button-shadow-2);
-            cursor: pointer;
+            box-shadow: 0 8px 16px var(--button-shadow-1);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
         .liquid-glass-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px var(--button-shadow-1), 0 5px 10px var(--button-shadow-2);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px var(--button-shadow-1);
             border-color: rgba(255, 255, 255, 0.5);
         }
 
         .liquid-glass-button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
             background: var(--shine-gradient);
             transform: skewX(-20deg);
             transition: transform 0.6s ease-out;
@@ -89,13 +91,33 @@
         .liquid-glass-button:hover::before {
             transform: translateX(200%) skewX(-20deg);
         }
+
+        /* Responsif: Menjadi 1 kolom pada layar HP */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <a href="https://maps.app.goo.gl/8AYyfYj1Vj4YfYmh7?g_st=iw" target="_blank" rel="noopener noreferrer" class="liquid-glass-button">Alamat Site</a>
-    <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQD1dikP15KtTZ2dC53p6nMfAWCBwAL3ipp958OyNljNeVM" target="_blank" rel="noopener noreferrer" class="liquid-glass-button">Data Aset</a>
-    <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQCY1E_3c1cKQLRb3SMKGduMAUFuC6wObp7McUm-OyFlquw" target="_blank" rel="noopener noreferrer" class="liquid-glass-button">Checklist</a>
-    <a href="https://idclear01.sharepoint.com/:u:/s/UnitOIT/IQA5ZJFVG-yYSKV1cdVdN6-DAdckft8p2TDBDPgplOtEv98" target="_blank" rel="noopener noreferrer" class="liquid-glass-button">Rack Mapping</a>
-    <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQDcxUMj93KOQod0TFuCO5bWAYK8KecDjxsUhn8ZedmZLh4" target="_blank" rel="noopener noreferrer" class="liquid-glass-button">Network Port Mapping</a>
+
+    <div class="grid-container">
+        <!-- Baris 1 -->
+        <a href="https://maps.app.goo.gl/8AYyfYj1Vj4YfYmh7?g_st=iw" target="_blank" class="liquid-glass-button">Alamat Site</a>
+        <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQD1dikP15KtTZ2dC53p6nMfAWCBwAL3ipp958OyNljNeVM" target="_blank" class="liquid-glass-button">Data Aset</a>
+        <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQCY1E_3c1cKQLRb3SMKGduMAUFuC6wObp7McUm-OyFlquw" target="_blank" class="liquid-glass-button">Checklist</a>
+
+        <!-- Baris 2 -->
+        <a href="https://idclear01.sharepoint.com/:u:/s/UnitOIT/IQA5ZJFVG-yYSKV1cdVdN6-DAdckft8p2TDBDPgplOtEv98" target="_blank" class="liquid-glass-button">Rack Mapping</a>
+        <a href="https://idclear01.sharepoint.com/:x:/s/UnitOIT/IQDcxUMj93KOQod0TFuCO5bWAYK8KecDjxsUhn8ZedmZLh4" target="_blank" class="liquid-glass-button">Network Port Mapping</a>
+        <a href="#" class="liquid-glass-button">Menu 6</a>
+
+        <!-- Baris 3 -->
+        <a href="#" class="liquid-glass-button">Menu 7</a>
+        <a href="#" class="liquid-glass-button">Menu 8</a>
+        <a href="#" class="liquid-glass-button">Menu 9</a>
+    </div>
+
 </body>
 </html>
